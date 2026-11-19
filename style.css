@@ -1,0 +1,154 @@
+/* «Ижица»: еловый зелёный, золото, белый */
+:root {
+  --spruce-deep: #12261d;
+  --spruce: #1d3a2e;
+  --gold: #c9a55c;
+  --gold-soft: #e3cb94;
+  --white: #fbf9f4;
+
+  --font-title: "Forum", Georgia, "Times New Roman", serif;
+  --font-text: "PT Sans", "Segoe UI", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+  font-family: var(--font-text);
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 50% 0%, #2a4d3d 0%, transparent 60%),
+    var(--spruce-deep);
+}
+
+/* Карточка со вторым золотым контуром внутри — как рамка на старинной открытке */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 44px 26px 32px;
+  text-align: center;
+  background: var(--spruce);
+  border: 1px solid var(--gold);
+  border-radius: 28px;
+  animation: appear 0.8s ease-out both;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(201, 165, 92, 0.35);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+/* Монограмма вместо фото */
+.avatar {
+  width: 108px;
+  height: 108px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 0 6px var(--spruce), 0 0 0 7px rgba(201, 165, 92, 0.45);
+  font-family: var(--font-title);
+  font-size: 40px;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  background: var(--spruce-deep);
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+
+.name {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.1;
+  color: var(--white);
+}
+
+.role {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gold-soft);
+}
+
+.about {
+  max-width: 34ch;
+  margin: 14px auto 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(251, 249, 244, 0.82);
+}
+
+/* Кнопки-ссылки */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 14px 20px;
+  border: 1px solid var(--gold);
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--white);
+  background: transparent;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.btn--main {
+  background: var(--gold);
+  color: var(--spruce-deep);
+}
+
+.btn__icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+}
+
+.btn:hover { background: rgba(201, 165, 92, 0.18); }
+.btn--main:hover { background: var(--gold-soft); }
+.btn:active { transform: scale(0.98); }
+
+.btn:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 3px;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+  .btn { transition: none; }
+}
+
+@media (max-width: 380px) {
+  .card { padding: 36px 18px 26px; }
+  .name { font-size: 32px; }
+}
